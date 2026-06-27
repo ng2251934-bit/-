@@ -5,64 +5,62 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
-// 品牌色
-val Primary = Color(0xFF1A73E8)
-val PrimaryVariant = Color(0xFF1557B0)
-val OnPrimary = Color(0xFFFFFFFF)
+// ========== 核心品牌色 ==========
+val CyberBlue = Color(0xFF00D4FF)
+val CyberPurple = Color(0xFF7B2FFF)
+val CyberPink = Color(0xFFFF2D95)
+val ElectricGreen = Color(0xFF00FF88)
+val DeepBlue = Color(0xFF0A0E27)
+val DarkNavy = Color(0xFF0D1129)
+val SurfaceDark = Color(0xFF131736)
+val CardDark = Color(0xFF181C3D)
+val CardDarkAlt = Color(0xFF1C2050)
+val TextWhite = Color(0xFFE8ECFF)
+val TextGray = Color(0xFF8890B5)
+val TextDim = Color(0xFF5A6080)
+val SuccessGreen = Color(0xFF00E676)
+val DangerRed = Color(0xFFFF3D5A)
+val WarningOrange = Color(0xFFFFA726)
+val Amber = Color(0xFFFFD740)
 
-// 安全状态色
-val SafeGreen = Color(0xFF34A853)
-val WarningOrange = Color(0xFFFBBC04)
-val DangerRed = Color(0xFFEA4335)
+// ========== 渐变色 ==========
+val GradientBlue = listOf(Color(0xFF00D4FF), Color(0xFF007BFF))
+val GradientPurple = listOf(Color(0xFF7B2FFF), Color(0xFF3D5AFE))
+val GradientPink = listOf(Color(0xFFFF2D95), Color(0xFFFF0055))
+val GradientGreen = listOf(Color(0xFF00FF88), Color(0xFF00C853))
+val GradientDark = listOf(Color(0xFF0D1129), Color(0xFF131736), Color(0xFF0A0E27))
+val GradientCard = listOf(Color(0xFF181C3D), Color(0xFF151838))
 
-// 表面色
-val SurfaceLight = Color(0xFFF8F9FA)
-val SurfaceDark = Color(0xFF1E1E2E)
-val CardLight = Color(0xFFFFFFFF)
-val CardDark = Color(0xFF2D2D3F)
-
-// 文字色
-val TextPrimary = Color(0xFF202124)
-val TextSecondary = Color(0xFF5F6368)
-val TextOnDark = Color(0xFFE8EAED)
-
-private val LightColorScheme = lightColorScheme(
-    primary = Primary,
-    onPrimary = OnPrimary,
-    primaryContainer = Color(0xFFD2E3FC),
-    secondary = Color(0xFF5F6368),
+private val CyberDarkColorScheme = darkColorScheme(
+    primary = CyberBlue,
+    onPrimary = Color(0xFF001A33),
+    primaryContainer = Color(0xFF003366),
+    onPrimaryContainer = Color(0xFF80D8FF),
+    secondary = CyberPurple,
     onSecondary = Color.White,
-    background = SurfaceLight,
-    surface = CardLight,
-    onBackground = TextPrimary,
-    onSurface = TextPrimary,
+    secondaryContainer = Color(0xFF2A1050),
+    onSecondaryContainer = Color(0xFFD1C4FF),
+    tertiary = CyberPink,
+    onTertiary = Color.White,
+    background = DeepBlue,
+    onBackground = TextWhite,
+    surface = SurfaceDark,
+    onSurface = TextWhite,
+    surfaceVariant = CardDark,
+    onSurfaceVariant = TextGray,
     error = DangerRed,
-    onError = Color.White
-)
-
-private val DarkColorScheme = darkColorScheme(
-    primary = Color(0xFF8AB4F8),
-    onPrimary = Color(0xFF003A8C),
-    primaryContainer = Color(0xFF1A237E),
-    secondary = Color(0xFFBDBDBD),
-    onSecondary = Color(0xFF333333),
-    background = SurfaceDark,
-    surface = CardDark,
-    onBackground = TextOnDark,
-    onSurface = TextOnDark,
-    error = Color(0xFFEF5350),
-    onError = Color.White
+    onError = Color.White,
+    outline = Color(0xFF2A2F55)
 )
 
 @Composable
 fun SecurityGuardTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
+    darkTheme: Boolean = true,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme
-
     MaterialTheme(
-        colorScheme = colorScheme,
+        colorScheme = CyberDarkColorScheme,
+        typography = Typography(),
         content = content
     )
 }
