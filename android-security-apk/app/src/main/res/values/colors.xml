@@ -9,4 +9,5 @@
     <color name="surface_dark">#FF1E1E2E</color>
     <color name="card_light">#FFFFFFFF</color>
     <color name="card_dark">#FF2D2D3F</color>
+    <color name="ic_launcher_background">#FF1A73E8</color>
 </resources>

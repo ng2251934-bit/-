@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.sp
 import com.securityguard.app.security.SecurityScanner
 import com.securityguard.app.ui.theme.*
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
     scanner: SecurityScanner
@@ -427,7 +428,7 @@ private fun SecurityItemCard(
                 exit = shrinkVertically() + fadeOut()
             ) {
                 Column(modifier = Modifier.padding(top = 12.dp)) {
-                    HorizontalDivider(color = Color(0xFFEEEEEE))
+                    Divider(color = Color(0xFFEEEEEE))
                     Spacer(modifier = Modifier.height(12.dp))
                     Text(
                         text = item.details,
