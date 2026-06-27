@@ -1,21 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">安全加固卫士</string>
-    <string name="security_status_safe">安全</string>
-    <string name="security_status_warning">警告</string>
-    <string name="security_status_danger">危险</string>
-    <string name="btn_scan">开始安全扫描</string>
-    <string name="btn_rescan">重新扫描</string>
-    <string name="title_signature">签名校验</string>
-    <string name="title_anti_debug">反调试检测</string>
-    <string name="title_root_detect">Root 检测</string>
-    <string name="title_emulator_detect">模拟器检测</string>
-    <string name="title_encryption">数据加密</string>
-    <string name="title_hook_detect">Hook 检测</string>
-    <string name="desc_signature">验证 APK 签名完整性，防止二次打包</string>
-    <string name="desc_anti_debug">检测是否被调试器附加，防止动态分析</string>
-    <string name="desc_root_detect">检测设备是否已 Root，防止提权攻击</string>
-    <string name="desc_emulator_detect">检测是否运行在模拟器环境</string>
-    <string name="desc_encryption">关键数据 AES-256 加密存储保护</string>
-    <string name="desc_hook_detect">检测 Xposed/Frida 等 Hook 框架</string>
+    <string name="app_name">APK加固卫士</string>
 </resources>
