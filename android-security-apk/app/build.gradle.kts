@@ -104,6 +104,12 @@ dependencies {
     // BouncyCastle for PKCS7 signing
     implementation("org.bouncycastle:bcpkix-jdk18on:1.78")
 
+    // zip4j - 成熟 ZIP 处理 (dpt-shell 同款)
+    implementation("net.lingala.zip4j:zip4j:2.11.5")
+
+    // ManifestEditor - 二进制 XML 编辑 (dpt-shell 同款)
+    implementation(files("libs/ManifestEditor-1.0.2.jar"))
+
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
