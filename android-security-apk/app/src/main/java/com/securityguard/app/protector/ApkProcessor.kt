@@ -11,7 +11,6 @@ import java.io.*
 import java.security.*
 import java.security.cert.X509Certificate
 import java.util.jar.Attributes
-import java.util.jar.JarOutputStream
 import java.util.jar.Manifest as JarManifest
 import java.util.zip.CRC32
 import java.util.zip.ZipEntry
@@ -80,7 +79,7 @@ object ApkProcessor {
             val dexFiles = mutableListOf<String>()
 
             zipFile.entries().asIterator().forEach { entry ->
-                if (!entry.isDirectory) {
+                if (!entry.isDirectory && !entry.name.startsWith("META-INF/")) {
                     val data = zipFile.getInputStream(entry).readBytes()
                     entries[entry.name] = data
                     entryMethods[entry.name] = entry.method
@@ -404,22 +403,22 @@ object ApkProcessor {
         val signedData = generator.generate(CMSProcessableByteArray(sfBytes), true)
         val pkcs7Bytes = signedData.encoded
 
-        // 5. 写入签名后的 APK
-        JarOutputStream(FileOutputStream(signedApk), manifest).use { jos ->
+        // 5. 写入签名后的 APK (ZipOutputStream, 不用 JarOutputStream 避免重复 MANIFEST.MF)
+        ZipOutputStream(BufferedOutputStream(FileOutputStream(signedApk))).use { out ->
             for ((name, data) in fileData) {
-                jos.putNextEntry(ZipEntry(name))
-                jos.write(data)
-                jos.closeEntry()
+                out.putNextEntry(ZipEntry(name))
+                out.write(data)
+                out.closeEntry()
             }
-            jos.putNextEntry(ZipEntry("META-INF/MANIFEST.MF"))
-            jos.write(manifestBytes)
-            jos.closeEntry()
-            jos.putNextEntry(ZipEntry("META-INF/CERT.SF"))
-            jos.write(sfBytes)
-            jos.closeEntry()
-            jos.putNextEntry(ZipEntry("META-INF/CERT.RSA"))
-            jos.write(pkcs7Bytes)
-            jos.closeEntry()
+            out.putNextEntry(ZipEntry("META-INF/MANIFEST.MF"))
+            out.write(manifestBytes)
+            out.closeEntry()
+            out.putNextEntry(ZipEntry("META-INF/CERT.SF"))
+            out.write(sfBytes)
+            out.closeEntry()
+            out.putNextEntry(ZipEntry("META-INF/CERT.RSA"))
+            out.write(pkcs7Bytes)
+            out.closeEntry()
         }
     }
 
