@@ -68,6 +68,16 @@ android {
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "/META-INF/versions/9/OSGI-INF/MANIFEST.MF"
+            excludes += "/META-INF/BC1024KE.DSA"
+            excludes += "/META-INF/BC1024KE.SF"
+            excludes += "/META-INF/BC2048KE.DSA"
+            excludes += "/META-INF/BC2048KE.SF"
+            excludes += "/META-INF/BCKEY.DSA"
+            excludes += "/META-INF/BCKEY.SF"
+        }
+        jniLibs {
+            useLegacyPackaging = true
         }
     }
 }
@@ -90,6 +100,9 @@ dependencies {
 
     // Security
     implementation("androidx.security:security-crypto:1.1.0-alpha06")
+
+    // BouncyCastle for PKCS7 signing
+    implementation("org.bouncycastle:bcpkix-jdk18on:1.78")
 
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")

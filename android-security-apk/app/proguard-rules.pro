@@ -30,6 +30,10 @@
 -keep class android.content.pm.Signature { *; }
 -keep class android.content.pm.PackageInfo { *; }
 
+# ---- 保留 BouncyCastle 签名库 ----
+-keep class org.bouncycastle.** { *; }
+-dontwarn org.bouncycastle.**
+
 # ---- 移除日志输出 ----
 -assumenosideeffects class android.util.Log {
     public static boolean isLoggable(java.lang.String, int);
